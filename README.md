@@ -31,19 +31,7 @@ const schema = new Schema({
 module.exports = schema
 ```
 
-### 3.  Initialize Notis
-```js
-const { exampleSchemaOne, exampleSchemaTwo } = require('./notis-example-schemas')
-
-const schema = new Schema({
-    exampleSchemaOne,
-    exampleSchemaTwo,
-})
-
-module.exports = schema
-```
-
-### 4. Initialize Notis
+### 3. Initialize Notis
 ```js
 const schemas = require('./schemas')
 const notis = require('notis')(schemas)
@@ -54,7 +42,7 @@ const { note, alert, validation } = notis({
 })
 ```
 
-### 5. note()
+### 4. note()
 note returns a message obeject. 
 
 ```js
@@ -71,7 +59,7 @@ inform: {
     message: '你好david!'
 }
 ```
-### 6. alert()
+### 5. alert()
 alerts returns an object that has one or more buttons
 ```js
 const action = alert('names','david', [
