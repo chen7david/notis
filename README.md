@@ -103,7 +103,8 @@ alerts is an object that has a load() and render() method.
 ```js
 
 for(let item of list){
-    validation.load(item.code, item.data, item.label)
+    const {code, data, label} = item
+    validation.load(code, data, label)
 }
 
 console.log(validation.render())
