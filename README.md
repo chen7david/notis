@@ -107,7 +107,7 @@ console.log(validation.render())
 
 ```
 
-output:
+- output:
 
 ```js
 
@@ -187,4 +187,18 @@ const SomeExpressRoute = async (req, res, next) => {
     next()
 }
 
+```
+
+- output:
+
+```js
+
+Validation {
+  state: 'validation',
+  lang: 'en',
+  messages: [
+    { message: 'some validation message', key: 'username' },
+    { message: 'some other validation message', key: 'password' }
+  ]
+}
 ```
