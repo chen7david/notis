@@ -33,8 +33,8 @@ module.exports = schema
 
 ### 3. Initialize Notis
 ```js
-const schemas = require('./schemas')
-const notis = require('notis')(schemas)
+const schema = require('./schema')
+const { notis } = require('notis')(schema)
 
 const { note, alert, validation } = notis({
     lang: 'zh',
