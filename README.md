@@ -133,7 +133,7 @@ app.use(notis())
 
 ```
 
-#### note()
+#### - note()
 
 
 ```js
@@ -148,8 +148,21 @@ const SomeExpressRoute = async (req, res, next) => {
 
 ```
 
+- output:
 
-#### alert()
+```js
+
+{
+  state: 'error',
+  lang: 'en',
+  timeout: 6000,
+  message: 'invalid username!'
+}
+
+```
+
+
+#### - alert()
 
 ```js
 // accessing in express route
@@ -168,8 +181,27 @@ const SomeExpressRoute = async (req, res, next) => {
 
 ```
 
+- output:
 
-#### validation()
+```js
+
+{
+  state: 'alert',
+  lang: 'en',
+  timeout: 0,
+  message: 'verification required!',
+  actions: [
+    {
+      label: 'click here to verify your account',
+      url: '/account/verification/:some-user-id'
+    }
+  ]
+}
+
+```
+
+
+#### - validation()
 
 ```js
 // accessing in express route
@@ -193,7 +225,7 @@ const SomeExpressRoute = async (req, res, next) => {
 
 ```js
 
-Validation {
+{
   state: 'validation',
   lang: 'en',
   messages: [
