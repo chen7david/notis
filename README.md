@@ -109,13 +109,15 @@ validation: {
 }
 ```
 
-Express Middleware Example
+### 7. Express Middleware Example
+
 ```js
 const { Schema } = require('notis')
 const schema = new Schema(require('notis-schema'))
 const notis = require('notis')(schema)
 
 module.exports = {
+
     tools: (req, res, next) => {
         if(!req.tools) req.tools = {}
 
