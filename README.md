@@ -112,22 +112,21 @@ validation: {
 ### 7. Express Middleware Example
 
 ```js
-const { Schema } = require('notis')
-const schema = new Schema(require('notis-schema'))
+
+const schema = require('notis-schema')()
 const notis = require('notis')(schema)
 
-module.exports = {
+// mount on express app
+app.use(notis())
 
-    tools: (req, res, next) => {
-        if(!req.tools) req.tools = {}
 
-        const { note, alert, validation } = notis({ lang: 'zh' })
+// accessing in express route
 
-        req.tools.note = note
-        req.tools.alert = alert
-        req.tools.validation = validation
-        
-        next()
-    },
+const SomeExpressRoute = async (req, res, next) => {
+    
+    const message = req.note('invalid', 'username')
+    
+    next()
 }
+
 ```

@@ -68,7 +68,37 @@ class Validation {
     }
 }
 
-exports = module.exports = (schema) => (options) => {
+exports = module.exports = (schema) => (req, res, next) => {
+
+    schema.lang = req.lang ? req.lang : schema.lang
+
+    req.note = (key, data, state) => {
+        return {
+            state: state ? state : 'error',
+            lang: schema.lang,
+            timeout: req.timeout ? req.timeout : 6000,
+            message: schema.render(key, data)
+        }
+    }
+
+    req.alert = (key, data, url) => {
+        return {
+            state: 'alert',
+            lang: schema.lang,
+            timeout: 0,
+            message: schema.render(key, data),
+            actions: url ? url : []
+        }
+    }
+    
+    req.validation = () => new Validation(schema)
+
+    next()
+}
+
+exports.Schema = Schema
+exports.Validation = Validation
+exports.notis = (schema) => (options) => {
 
     const { lang, state, timeout } = options
 
@@ -98,6 +128,3 @@ exports = module.exports = (schema) => (options) => {
         },
     }
 }
-
-exports.Schema = Schema
-exports.Validation = Validation
