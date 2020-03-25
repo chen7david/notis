@@ -123,12 +123,14 @@ validation: {
 
 ### 7. Express Middleware Example
 
+**Note:** if you wish to set the langue you will have set a lang property on your request object before instantiating notis.
 
 ```js
 const schema = require('notis-schema')()
 const notis = require('notis')(schema)
 
 // mount on express app
+// app.use(config) this route is used to set req.lang to your lang choice on each request.
 app.use(notis())
 
 ```
