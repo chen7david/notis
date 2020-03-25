@@ -68,8 +68,7 @@ class Validation {
     }
 }
 
-exports = module.exports = (schema) => (req, res, next) => {
-
+exports = module.exports = (schema) => () => (req, res, next) => {
     schema.lang = req.lang ? req.lang : schema.lang
 
     req.note = (key, data, state) => {
