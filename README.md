@@ -123,20 +123,66 @@ validation: {
 
 ### 7. Express Middleware Example
 
-```js
 
+```js
 const schema = require('notis-schema')()
 const notis = require('notis')(schema)
 
 // mount on express app
 app.use(notis())
 
+```
 
+#### note()
+
+
+```js
 // accessing in express route
 
 const SomeExpressRoute = async (req, res, next) => {
     
     const message = req.note('invalid', 'username')
+    
+    next()
+}
+
+```
+
+
+#### alert()
+
+```js
+// accessing in express route
+
+const SomeExpressRoute = async (req, res, next) => {
+    
+    const alert = req.alert('required', 'verification', [
+        {
+            label:'click here to verify your account',
+            url:'/account/verification/:some-user-id'
+        }
+    ])
+    
+    next()
+}
+
+```
+
+
+#### validation()
+
+```js
+// accessing in express route
+
+const SomeExpressRoute = async (req, res, next) => {
+    
+    const instance = req.validation()
+    
+    for(let errof errors){
+        instance.laod(err.name, err.label, err.key)
+    }
+
+    validationErrorMessages = instance.render()
     
     next()
 }
