@@ -50,7 +50,11 @@ const inform = note('names','david', 'info')
 
 console.log(inform)
 
-// output
+```
+
+output
+
+```js
 
 inform: { 
     state: 'info', 
@@ -69,7 +73,11 @@ const action = alert('names','david', [
     }
 ])
 
-// output
+```
+
+output:
+
+```js
 
 action: {
   state: 'alert',
@@ -97,7 +105,11 @@ for(let item of list){
 
 console.log(validation.render())
 
-// output
+```
+
+output:
+
+```js
 
 validation: {
   state: 'validation',
