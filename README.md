@@ -96,6 +96,7 @@ for(let item of list){
 }
 
 console.log(validation.render())
+
 // output
 
 validation: {
@@ -105,5 +106,26 @@ validation: {
     { message: '你好some-name!', key: 'username' },
     { message: 'some-password有误!', key: 'password' }
   ]
+}
+```
+
+Express Middleware Example
+```js
+const { Schema } = require('notis')
+const schema = new Schema(require('notis-schema'))
+const notis = require('notis')(schema)
+
+module.exports = {
+    tools: (req, res, next) => {
+        if(!req.tools) req.tools = {}
+
+        const { note, alert, validation } = notis({ lang: 'zh' })
+
+        req.tools.note = note
+        req.tools.alert = alert
+        req.tools.validation = validation
+        
+        next()
+    },
 }
 ```

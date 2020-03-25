@@ -80,7 +80,7 @@ exports = module.exports = (schema) => (options) => {
             return {
                 state: state ? state : schema.state,
                 lang: schema.lang,
-                timeout: timeout ? timeout : schema.timeout,
+                timeout: timeout ? timeout : 6000,
                 message: schema.render(key, data)
             }
         },
