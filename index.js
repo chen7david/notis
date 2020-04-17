@@ -1,5 +1,5 @@
 const Notis = require('./models/notis')
-const Cargo = require('./models/notis')
+const Cargo = require('./models/cargo')
 const joi = require('./schema/joi')
 const generic = require('./schema/generic')
 const join = require('./schema/joined')

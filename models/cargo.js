@@ -29,3 +29,5 @@ class Cargo {
         return this
     }
 }
+
+module.exports = Cargo
