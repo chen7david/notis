@@ -2,51 +2,32 @@
 ### 1.  Defining a new Schema
 schema.js
 ```js
-const { Schema } = require('notis')
+module.exports = {
 
-const schema = new Schema()
+    /* CRUD */ 
 
-schema.create('welcome', {
-    en: () => `hello there!`,
-    zh: () => `你好!`
-})
-
-schema.create('invalid', {
-    en: (noun) => `invalid ${noun}!`,
-    zh: noun => `${noun}有误!`
-})
-
-module.exports = schema
-```
-
-### 2.  Merge Schemas
-```js
-const { exampleSchemaOne, exampleSchemaTwo } = require('./notis-example-schemas')
-
-const schema = new Schema({
-    exampleSchemaOne,
-    exampleSchemaTwo,
-})
-
-module.exports = schema
+    created: (noun) =>`successfully created new ${noun}!`,
+    create_failed: (noun) =>`faild to create new ${noun}!`,
+    updated: (noun) =>`successfully updated ${noun}!`,
+    update_faild: (noun) =>`faild to update ${noun}!`,
+    deleted: (noun) =>`successfully deleted ${noun}!`,
+    delete_faild: (noun) =>`faild to delete ${noun}!`,
+}
 ```
 
 ### 3. Initialize Notis
 ```js
-const schema = require('./schema')
-const { notis } = require('notis')(schema)
+const { Notis, schema, notisexpress } = require('notis')
 
-const { note, alert, validation } = notis({
-    lang: 'zh',
-    timeout: 30
-})
+const notis = new Notis(schema.join())
+
 ```
 
 ### 4. note()
 note returns a message obeject. 
 
 ```js
-const inform = note('names','david', 'info')
+const inform = notis('names','david', 'info')
 
 console.log(inform)
 
@@ -63,36 +44,6 @@ inform: {
     message: '你好david!'
 }
 ```
-### 5. alert()
-alerts returns an object that has one or more buttons
-```js
-const action = alert('names','david', [
-    {
-        label:'verify',
-        url: '/users/action/activate'
-    }
-])
-
-```
-
-output:
-
-```js
-
-action: {
-  state: 'alert',
-  lang: 'zh',
-  timeout: 0,
-  message: '你好david!',
-  actions: [ 
-      { 
-        label: 'verify', 
-        url: '/users/action/activate' 
-      }
-   ]
-}
-```
-
 
 ### 6. validation
 alerts is an object that has a load() and render() method.
@@ -100,10 +51,10 @@ alerts is an object that has a load() and render() method.
 
 for(let item of list){
     const {code, data, label} = item
-    validation.load(code, data, label)
+    notis.load(code, data, label)
 }
 
-console.log(validation.render())
+console.log(validation)
 
 ```
 
@@ -113,7 +64,6 @@ console.log(validation.render())
 
 validation: {
   state: 'validation',
-  lang: 'zh',
   messages: [
     { message: '你好some-name!', key: 'username' },
     { message: 'some-password有误!', key: 'password' }
@@ -126,12 +76,10 @@ validation: {
 **Note:** if you wish to set the langue you will have set a lang property on your request object before instantiating notis.
 
 ```js
-const schema = require('notis-schema')()
-const notis = require('notis')(schema)
 
 // mount on express app
 // app.use(config) this route is used to set req.lang to your lang choice on each request.
-app.use(notis())
+app.use(notisexpress(schema.joi))
 
 ```
 
@@ -143,7 +91,7 @@ app.use(notis())
 
 const SomeExpressRoute = async (req, res, next) => {
     
-    const message = req.note('invalid', 'username')
+    const message = req.notis('invalid', 'username')
     
     next()
 }
@@ -163,46 +111,6 @@ const SomeExpressRoute = async (req, res, next) => {
 
 ```
 
-
-#### - alert()
-
-```js
-// accessing in express route
-
-const SomeExpressRoute = async (req, res, next) => {
-    
-    const alert = req.alert('required', 'verification', [
-        {
-            label:'click here to verify your account',
-            url:'/account/verification/:some-user-id'
-        }
-    ])
-    
-    next()
-}
-
-```
-
-- output:
-
-```js
-
-{
-  state: 'alert',
-  lang: 'en',
-  timeout: 0,
-  message: 'verification required!',
-  actions: [
-    {
-      label: 'click here to verify your account',
-      url: '/account/verification/:some-user-id'
-    }
-  ]
-}
-
-```
-
-
 #### - validation()
 
 ```js
@@ -210,13 +118,10 @@ const SomeExpressRoute = async (req, res, next) => {
 
 const SomeExpressRoute = async (req, res, next) => {
     
-    const instance = req.validation()
     
     for(let errof errors){
-        instance.laod(err.name, err.label, err.key)
+        req.notis.laod(err.name, err.label, err.key)
     }
-
-    validationErrorMessages = instance.render()
     
     next()
 }
@@ -229,7 +134,6 @@ const SomeExpressRoute = async (req, res, next) => {
 
 {
   state: 'validation',
-  lang: 'en',
   messages: [
     { message: 'some validation message', key: 'username' },
     { message: 'some other validation message', key: 'password' }

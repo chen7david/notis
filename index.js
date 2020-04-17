@@ -5,8 +5,8 @@ const join = require('./schema/joined')
 
 module.exports = {
 
-    notis: (schema) => new Notis(schema),
-
+    Notis,
+    
     notisexpress: (schema) => (req, _, next) => {
         req.notis = new Notis(schema)
         next()
