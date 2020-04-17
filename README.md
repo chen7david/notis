@@ -15,7 +15,7 @@ module.exports = {
 }
 ```
 
-### 3. Initialize Notis
+### 2. Initialize Notis
 ```js
 const { Notis, schema, notisexpress } = require('notis')
 
@@ -23,7 +23,7 @@ const notis = new Notis(schema.join())
 
 ```
 
-### 4. note()
+### 3. note()
 note returns a message obeject. 
 
 ```js
@@ -45,7 +45,7 @@ inform: {
 }
 ```
 
-### 6. validation
+### 4. validation
 alerts is an object that has a load() and render() method.
 ```js
 
@@ -71,7 +71,7 @@ validation: {
 }
 ```
 
-### 7. Express Middleware Example
+### 5. Express Middleware Example
 
 **Note:** if you wish to set the langue you will have set a lang property on your request object before instantiating notis.
 
