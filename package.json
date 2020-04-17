@@ -1,6 +1,6 @@
 {
   "name": "notis",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,5 @@
     "url": "https://github.com/chen7david/notis/issues"
   },
   "homepage": "https://github.com/chen7david/notis#readme",
-  "dependencies": {
-    "funx-js": "0.0.14"
-  }
+  "dependencies": {}
 }
