@@ -133,10 +133,17 @@ const SomeExpressRoute = async (req, res, next) => {
 ```js
 
 {
-  state: 'validation',
-  messages: [
-    { message: 'some validation message', key: 'username' },
-    { message: 'some other validation message', key: 'password' }
+  "state": "validation",
+  "status": 422,
+  "messages": [
+    {
+      "key": "miln",
+      "message": "name is already in use!"
+    },
+    {
+      "key": "miln",
+      "message": "name is already in use!"
+    }
   ]
 }
 ```
