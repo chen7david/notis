@@ -17,7 +17,7 @@ module.exports = {
 
 ### 2. Initialize Notis
 ```js
-const { Notis, schema, notisexpress } = require('notis')
+const { Notis, schema, notisexpress, cargoexpress } = require('notis')
 
 const notis = new Notis(schema.join())
 
