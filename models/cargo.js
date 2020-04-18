@@ -6,6 +6,8 @@ class Cargo {
         this.isCargo = true
         this.serial = serialInt("00000")
         this.createdAt = timestamp()
+        this.status = 200
+        this.isVisible = false
     }
 
     details(details){
@@ -18,8 +20,13 @@ class Cargo {
         return this
     }
 
-    status(status){
+    statusTo(status){
         this.status = status
+        return this
+    }
+
+    visible(){
+        this.isVisible = true
         return this
     }
 

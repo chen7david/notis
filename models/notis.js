@@ -1,7 +1,6 @@
 class Notis {
     constructor(schema){
         this.state = 'error'
-        this.status = 200
         this.schema = schema
     }
 
@@ -28,7 +27,6 @@ class Notis {
     load(code, data, key){
         if(!this.messages) this.messages = []
         this.state = 'validation'
-        this.status = 422
         this.messages.push({
             key,
             message: this.render(code, data)
