@@ -10,12 +10,12 @@ class Cargo {
         this.isVisible = false
     }
 
-    details(details){
+    detailsTo(details){
         this.details = details
         return this
     }
 
-    payload(payload){
+    payloadTo(payload){
         this.payload = payload
         return this
     }
