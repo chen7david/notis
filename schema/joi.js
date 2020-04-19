@@ -16,5 +16,6 @@ module.exports = {
     'string.email': ({label}) => `${label} must be a valid email`, 
     'string.min': ({label, limit}) => `${label} length must be at least ${limit} characters long`, 
     'string.max': ({label, limit}) => `${label} length must be less than or equal to ${limit} characters long`, 
+    'string.length': ({label, limit}) => `${label} length must be exactly equal to ${limit} characters long`, 
     'any.only': ({label, ref}) => `${label} and ${ref} must match`, 
 }
