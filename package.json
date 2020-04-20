@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/chen7david/notis#readme",
   "dependencies": {
-    "funx-js": "0.0.15"
+    "funx-js": "0.0.16"
   }
 }
