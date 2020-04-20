@@ -13,9 +13,11 @@ module.exports = {
     duplicate: (noun) => `${noun} is already in use!`, 
     required: (noun) =>`${noun} required!`,
     login: (noun) =>`welcome back ${noun}!`,
-    logout: (noun) =>`doodbye ${noun}, hope to see you again soon!`,
+    logout: (noun) =>`goodbye ${noun}, hope to see you again soon!`,
     verified: (noun) =>`${noun} verification complete!`,
     verification_required: (noun) =>`${noun} verification incomplete!`,
+    suspended: (noun) =>`${noun} suspended!`,
+    disabled: (noun) =>`${noun} disabled`,
     custom: (noun) =>`${noun}`,
 
     /* CRUD */ 
